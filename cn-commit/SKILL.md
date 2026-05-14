@@ -29,8 +29,9 @@ description: 根据 Git 暂存区生成中文 Conventional Commit，并在确认
 
 ### Step 1：读取暂存区事实（只看 staged）
 
-- 首选运行脚本获取结构化信息：`python "C:/Users/lenovo/.codex/skills/cn-commit/scripts/collect_staged_facts.py"`
+- 首选运行脚本获取结构化信息：`python cn-commit/scripts/collect_staged_facts.py`
   - 该脚本输出 JSON：包含变更文件、状态、行数统计、顶层目录分布等（用于推断 scope 与写摘要/正文）。
+  - 若 skill 被安装在其他目录，脚本路径应相对当前 `cn-commit/` 目录解析，而不是写死机器上的绝对路径。
 - 也可以直接用 Git 命令交叉验证：
   - `git diff --cached --name-status`
   - `git diff --cached --stat`
@@ -78,7 +79,7 @@ type(scope): 中文摘要（≤30字）
 ### Step 5：校验与确认（必须）
 
 - 使用脚本校验 message（建议写入临时文件再校验）：  
-  `python "C:/Users/lenovo/.codex/skills/cn-commit/scripts/validate_commit_msg.py" --file "<path/to/message.txt>"`
+  `python cn-commit/scripts/validate_commit_msg.py --file "<path/to/message.txt>"`
 - 输出最终 message + `git diff --cached --stat` 给你审阅。
 - 询问你是否继续执行本地提交；未明确确认则停止。
 
@@ -91,3 +92,11 @@ type(scope): 中文摘要（≤30字）
 
 - 你提出“根据暂存区生成中文 commit 并提交到本地”
 - 我会先展示 staged 事实（文件/统计/scope 推断/type 建议）→ 给出中文提交信息 → 让你确认 → 执行 `git commit`（不 push）→ 输出最新提交摘要
+
+## 最小验证
+
+- 运行 `python cn-commit/scripts/selftest.py`
+- 预期结果：
+  - `SKILL.md` 不包含环境绑定的绝对路径
+  - `validate_commit_msg.py` 能区分合法/非法提交信息
+  - `collect_staged_facts.py` 能在临时 Git 仓库中读取 staged 信息并正确推断 `scope`
