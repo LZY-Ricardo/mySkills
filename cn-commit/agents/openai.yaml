@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文规范提交"
+  short_description: "根据 Git 暂存区生成中文提交信息，并在确认后本地提交"
+  default_prompt: "使用 $cn-commit 根据当前暂存区生成中文规范提交信息，并在我确认后执行本地提交。"
