@@ -1,0 +1,7 @@
+interface:
+  display_name: "Context Compression"
+  short_description: "Compress long task state into a compact continuation brief"
+  default_prompt: "Use $context-compression to compress the current task state into a short continuation brief."
+
+policy:
+  allow_implicit_invocation: true

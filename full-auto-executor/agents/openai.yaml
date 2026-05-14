@@ -1,0 +1,6 @@
+interface:
+  display_name: "Full Auto Executor"
+  short_description: "Autonomously drive the whole task until complete or blocked"
+  default_prompt: "Use $full-auto-executor to autonomously complete this task end-to-end without pausing unless objectively blocked."
+policy:
+  allow_implicit_invocation: true

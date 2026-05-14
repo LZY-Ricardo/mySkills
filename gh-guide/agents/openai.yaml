@@ -1,0 +1,7 @@
+interface:
+  display_name: "GitHub CLI Guide"
+  short_description: "Use gh safely for PRs, issues, repos, and workflows"
+  default_prompt: "Use $gh-guide to choose the right gh command, apply safe execution rules, and summarize the GitHub result clearly."
+
+policy:
+  allow_implicit_invocation: true

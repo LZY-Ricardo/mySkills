@@ -1,0 +1,6 @@
+interface:
+  display_name: "Safe Auto Executor"
+  short_description: "Keep moving on low-risk steps and stop at high-risk boundaries"
+  default_prompt: "Use $safe-auto-executor to keep executing this task continuously and only stop for high-risk decisions or hard blockers."
+policy:
+  allow_implicit_invocation: true
