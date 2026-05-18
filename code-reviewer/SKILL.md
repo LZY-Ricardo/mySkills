@@ -25,6 +25,18 @@ Skip the skill for:
 - Trivial non-behavioral edits such as comments, copy tweaks, or formatting only.
 - Cases where the user explicitly says to skip review.
 
+## Review Scope
+
+Before reviewing, identify and state the review scope.
+
+Use this priority order:
+
+1. User-specified review scope
+2. All current working tree changes
+3. The most recent commit, but only if the working tree is clean
+
+If the scope is ambiguous, state the assumption in `Open Questions`.
+
 ## Review Contract
 
 The reviewer must:
@@ -36,21 +48,27 @@ The reviewer must:
 - Prefer concrete bugs, regressions, contract mismatches, missing validation, and missing tests over stylistic comments.
 - Cite precise file references whenever possible.
 - State assumptions clearly when evidence is incomplete.
+- State the review scope before listing findings.
 - Return a verdict of `PASS`, `FLAG`, or `BLOCK`.
 
 `BLOCK` applies when there is a clear correctness defect, high-confidence regression risk, broken contract, unsafe state transition, missing critical error handling, or a test gap that prevents safe commit.
 
-`FLAG` applies when risk exists but is not clearly release-blocking.
+`FLAG` applies when there is a real issue, meaningful risk, or notable test gap that should be surfaced before commit, but the change is not clearly release-blocking.
 
-`PASS` applies only when no blocking issue is found.
+`PASS` applies only when no substantive issue or notable unresolved risk is found in the reviewed scope.
 
 ## Required Output
 
 Use this structure:
 
 ```md
+Review Scope
+- scope reviewed
+
 Findings
 - [severity] [file reference] issue and why it matters
+  or
+- None
 
 Open Questions
 - question or `None`
@@ -59,6 +77,8 @@ Verdict
 - PASS | FLAG | BLOCK
 - short reason
 ```
+
+If there are no findings, write `- None`.
 
 Severity levels:
 

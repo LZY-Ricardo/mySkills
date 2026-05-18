@@ -1,7 +1,7 @@
 interface:
   display_name: "Code Reviewer"
   short_description: "Independent review before risky completion steps"
-  default_prompt: "Use $code-reviewer to review my recent code changes and return a PASS, FLAG, or BLOCK verdict."
+  default_prompt: "Use $code-reviewer to review the user-specified scope, or else all current working tree changes, or the most recent commit if the working tree is clean. Return a PASS, FLAG, or BLOCK verdict."
 
 policy:
   allow_implicit_invocation: true
